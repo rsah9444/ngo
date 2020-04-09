@@ -5,3 +5,9 @@ Description:This is a fully Dynamic site especially designed for ngo
 Tag:Ngo, Full Dynamic 
 
 */
+
+.custom-logo{
+    height:100%;
+    max-width: 150px;
+    overflow-x:hidden;
+}

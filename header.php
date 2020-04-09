@@ -1,54 +1,70 @@
-<html lang="en">
+<!DOCTYPE html>
+<html lang="<?php language_attributes( );?>">
 
 <head>
-  <meta charset="utf-8">
+  <meta charset="<?php bloginfo( 'charset' );?>">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>NewBiz Bootstrap Template - Index</title>
+  <title>Mamba Bootstrap Template - Index</title>
   <meta content="" name="descriptison">
   <meta content="" name="keywords">
-
-  <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
-
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
-  <link href="assets/vendor/ionicons/css/ionicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
-  <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
-
-  <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
-
-  <!-- =======================================================
-  * Template Name: NewBiz - v2.0.0
-  * Template URL: https://bootstrapmade.com/newbiz-bootstrap-business-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+<?php wp_head();?>
 </head>
 
 <body>
 
+  <!-- ======= Top Bar ======= -->
+  <section id="topbar" class="d-none d-lg-block">
+    <div class="container clearfix">
+      <div class="contact-info float-left">
+        <i class="icofont-envelope"></i><a href="mailto:contact@example.com">contact@example.com</a>
+        <i class="icofont-phone"></i> +1 5589 55488 55
+      </div>
+      <div class="social-links float-right">
+        <a href="#" class="twitter"><i class="icofont-twitter"></i></a>
+        <a href="#" class="facebook"><i class="icofont-facebook"></i></a>
+        <a href="#" class="instagram"><i class="icofont-instagram"></i></a>
+        <a href="#" class="skype"><i class="icofont-skype"></i></a>
+        <a href="#" class="linkedin"><i class="icofont-linkedin"></i></i></a>
+      </div>
+    </div>
+  </section>
+
   <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top">
+  <header id="header">
     <div class="container">
 
       <div class="logo float-left">
-        <!-- Uncomment below if you prefer to use an text logo -->
-        <!-- <h1 class="text-light"><a href="#header"><span>NewBiz</span></a></h1> -->
-        <a href="#intro" class="scrollto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>
+        <div class="text-light"><span>
+        <!-- logo goes here-->
+        <?php
+       function mytheme_custom_logo() {
+        // Try to retrieve the Custom Logo
+        $output = '';
+        if (function_exists('get_custom_logo'))
+            $output = get_custom_logo();
+    
+        // Nothing in the output: Custom Logo is not supported, or there is no selected logo
+        // In both cases we display the site's name
+        if (empty($output))
+            $output = '<h1><a href="' . esc_url(home_url('/')) . '">' . get_bloginfo('name') . '</a></h1>';
+    
+        echo $output;
+    }
+       mytheme_custom_logo();
+    
+        ?>
+        
+        
+        
+        </span></div>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
       </div>
 
-      <nav class="main-nav float-right d-none d-lg-block">
-        <ul>
-          <li class="active"><a href="#intro">Home</a></li>
+      <nav class="nav-menu float-right d-none d-lg-block">
+        <!-- <ul>
+          <li class="active"><a href="#header">Home</a></li>
           <li><a href="#about">About Us</a></li>
           <li><a href="#services">Services</a></li>
           <li><a href="#portfolio">Portfolio</a></li>
@@ -71,8 +87,16 @@
             </ul>
           </li>
           <li><a href="#contact">Contact Us</a></li>
-        </ul>
-      </nav><!-- .main-nav -->
+        </ul> -->
+       <?php wp_nav_menu( array( 
+           'theme_location' => 'header-menu',
+           'container' =>'',
+           'main-class'=>'nav-menu float-right d-none d-lg-block dropdown' 
+       
+       
+       ) );?>
+
+      </nav><!-- .nav-menu -->
 
     </div>
-  </header><!-- #header -->
+  </header><!-- End Header -->
