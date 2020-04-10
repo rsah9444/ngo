@@ -8,39 +8,53 @@
     <!-- ======= About Us Section ======= -->
     <section id="about" class="about">
       <div class="container">
+      <?php
+     
+      $about=get_field('title');
+      $about_para=get_field('infoparagraph');
+      $about_video=get_field('info_video');
+      $about_title1=get_field('infotitle1');
+      $about_para1=get_field('infosubparagraph');
+      $about_title2=get_field('infotitle2');
+      $about_para2=get_field('infosubparagraph2');
+      $about_image=get_field('info-image');
+    //   echo '<pre>';
+    //    print_r($about_image);
+    //   die();
+    //   echo '<pre>';
+      ?>
 
         <div class="row no-gutters">
           <div class="col-lg-6 video-box">
-            <img src="<?php echo esc_url($about_image['url'])?>" class="img-fluid" alt="">
-            <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="venobox play-btn mb-4" data-vbtype="video" data-autoplay="true"></a>
+            <img src="<?php echo esc_url($about_image['url']);?>" class="img-fluid" alt="">
+            <a href="<?php echo esc_url($about_video['url']);?>" class="venobox play-btn mb-4" data-vbtype="video" data-autoplay="true"></a>
           </div>
 
           <div class="col-lg-6 d-flex flex-column justify-content-center about-content">
 
             <div class="section-title">
               <h2>About Us</h2>
-              <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea.</p>
+              <p><?php echo esc_html( $about_para) ?></p>
             </div>
 
             <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
               <div class="icon"><i class="bx bx-fingerprint"></i></div>
-              <h4 class="title"><a href="">Lorem Ipsum</a></h4>
-              <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+              <h4 class="title"><a href=""><?php echo esc_html( $about_title1) ?></a></h4>
+              <p class="description"><?php echo esc_html( $about_para1) ?></p>
             </div>
 
             <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
               <div class="icon"><i class="bx bx-gift"></i></div>
-              <h4 class="title"><a href="">Nemo Enim</a></h4>
-              <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
-            </div>
+              <h4 class="title"><a href=""><?php echo esc_html(  $about_title2) ?></a></h4>
+              <p class="description"><?php echo esc_html( $about_para2) ?>
 
           </div>
         </div>
 
       </div>
     </section><!-- End About Us Section -->
-
-    <section id="Newsletter" class="services">
+    
+    <section id="Newsletter" class="Newsletter">
       <div class="container">
 
         <div class="section-title">
@@ -49,22 +63,38 @@
 
         <div class="row">
         <?php 
-         $news=array(
-           'post_type'=>'news',
-           'post_per_page'=>-1
-         )
-         print_r($news);
-
-        
-        ?>
+         $news =new WP_Query(
+               array(
+                   'post_type'=>'post',
+                   'posts_per_page'=>3,
+                   'cat'=>3
+              
+                ));
+                if ( $news->have_posts() ) {
+                    while ( $news->have_posts() ) {
+                        $news->the_post();
+                        
+                        ?>
+                        
+             
           <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up">
-            <div class="icon"><?php the_post_thumbnail( ); ?></i></div>
-            <h4 class="title"><a href="">Lorem Ipsum</a></h4>
-            <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+            <div class="icon">  <img class="icon" src="<?php echo esc_url( get_the_post_thumbnail_url( get_the_ID(), 'thumbnail' ) ); ?>" alt="<?php the_title(); ?>" /></i></div>
+            <h4 class="title"><a href="<?php the_permalink();?>"><?php echo get_the_title()  ?></a></h4>
+            <!-- <p class="description"><?php echo the_excerpt();?></p> -->
+           <p><?php echo wp_trim_words(get_the_content(), 18); ?> <a href="<?php the_permalink(); ?>" class="nu gray">Learn more</a></p>
           </div>
+          <?php   }
+                   
+                } else {
+                    // no posts found
+                }
+                /* Restore original Post Data */
+                wp_reset_postdata();
+   
+        ?>
 
     <!-- ======= About Lists Section ======= -->
-    <section class="about-lists">
+    <!-- <section class="about-lists">
       <div class="container">
 
         <div class="row no-gutters">
@@ -108,10 +138,10 @@
         </div>
 
       </div>
-    </section><!-- End About Lists Section -->
+    </section>End About Lists Section -->
 
     <!-- ======= Counts Section ======= -->
-    <section class="counts section-bg">
+    <!-- <section class="counts section-bg">
       <div class="container">
 
         <div class="row">
@@ -151,7 +181,7 @@
         </div>
 
       </div>
-    </section><!-- End Counts Section -->
+    </section>End Counts Section -->
 
     <!-- ======= Services Section ======= -->
     <section id="services" class="services">
@@ -198,7 +228,7 @@
     </section><!-- End Services Section -->
 
     <!-- ======= Our Portfolio Section ======= -->
-    <section id="portfolio" class="portfolio section-bg">
+    <!-- <section id="portfolio" class="portfolio section-bg">
       <div class="container" data-aos="fade-up" data-aos-delay="100">
 
         <div class="section-title">
@@ -348,7 +378,7 @@
         </div>
 
       </div>
-    </section><!-- End Our Portfolio Section -->
+    </section>End Our Portfolio Section -->
 
     <!-- ======= Our Team Section ======= -->
     <section id="team" class="team">
