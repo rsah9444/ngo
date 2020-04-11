@@ -390,13 +390,37 @@
         </div>
 
         <div class="row">
+         <?php 
+         $team=new WP_Query(
+             array(
+                 'post_type'=>'member',
+                 'posts_per_page'=>-1,
+                 'order'=>'ASC'
+             ));
+            
+     
+      
+        $n=0;
+          if($team->have_posts()):while($team->have_posts()):$team->the_post();  {
+          
+            $team_title=get_field('team-name');
+            $team_image=get_field('team-image');
+            $team_position=get_field('team-position');
+            $team_facebook=get_field('team-facebook');
+            $team_instagram=get_field('team-instagram');
+            $team_twitter=get_field('team-twitter');
+            $team_linkedin=get_field('team-linkedin');
+         
+           
+       ?>
+     
 
-          <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up">
+          <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="<?php echo $n?>">
             <div class="member">
-              <div class="pic"><img src="assets/img/team/team-1.jpg" class="img-fluid" alt=""></div>
+              <div class="pic"><img src="<?php echo esc_url($team_image['url'])?>" class="img-fluid" alt=""></div>
               <div class="member-info">
-                <h4>Walter White</h4>
-                <span>Chief Executive Officer</span>
+                <h4><?php echo esc_html($team_title)?></h4>
+                <span><?php echo esc_html($team_position)?></span>
                 <div class="social">
                   <a href=""><i class="icofont-twitter"></i></a>
                   <a href=""><i class="icofont-facebook"></i></a>
@@ -406,8 +430,13 @@
               </div>
             </div>
           </div>
-
-          <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+          <?php
+           $n=$n+100;  } 
+          endwhile;
+        endif;
+        wp_reset_postdata();
+        ?>
+          <!-- <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" >
             <div class="member">
               <div class="pic"><img src="assets/img/team/team-2.jpg" class="img-fluid" alt=""></div>
               <div class="member-info">
@@ -453,7 +482,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
 
         </div>
 
