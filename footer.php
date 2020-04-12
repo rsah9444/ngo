@@ -24,13 +24,21 @@
 
           <div class="col-lg-2 col-md-6 footer-links">
             <h4>Useful Links</h4>
-            <ul>
+            <?php wp_nav_menu( array( 
+           'theme_location' => 'header-menu',
+           'container' =>'',
+           'before'          => '<i class="bx bx-chevron-right"></i>'
+         
+       
+       
+       ) );?>
+            <!-- <ul>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
-            </ul>
+            </ul> -->
           </div>
 
           <div class="col-lg-3 col-md-6 footer-links">
@@ -50,7 +58,7 @@
             <form action="" method="post">
               <input type="email" name="email"><input type="submit" value="Subscribe">
             </form>
-
+     
           </div>
 
         </div>

@@ -12,58 +12,60 @@
   <p><?php echo the_content( )?></p>
  
   </div>
- <div id="comment-section">
-  <?php
-  $commenter = wp_get_current_commenter();
-  $req = get_option( 'require_name_email' );
-  $aria_req = ( $req ? " aria-required='true'" : '' );
-  
-  $consent = empty( $commenter['comment_author_email'] ) ? '' : ' checked="checked"';
-$fields =  array(
-  'author' =>
-    '<input placeholder="Your name please"id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) .
-    '" size="30"' . $aria_req . ' />',
-  'email' =>
-    '<input  placeholder="your email" id="email" name="email" type="text" value="' . esc_attr(  $commenter['comment_author_email'] ) .
-    '" size="30"' . $aria_req . ' />',
-);
-
-$args = array(
-  'title_reply'       => 'Share Your Thoughts',
-  'fields'            => $fields,
-  'comment_field' =>  '<textarea id="comment" name="comment" cols="45" rows="2" aria-required="true">' .
-    '</textarea>',
-  'comment_notes_before' => '<p class="comment-notes">Your email address will not be published </p>'
-
-);
-
- comment_form( $args);
- $comment_number=get_comments_number();
- if($comment_number !=0)
- {
-   ?>
-          <div class="comments">
-          <h3> What Others say</h3>
-          <ol class="all-comments">
+        <div class="container">
+        <div id="comment-section">
           <?php
-          $comments=get_comments( 
-            array(
-              'post_id'=> $post->ID,
-              'status'=> 'approve'
-            ));
-            wp_list_comments( 
-              array(
-                'per_page'=>5,  
-              ),$comments) ;
+          $commenter = wp_get_current_commenter();
+          $req = get_option( 'require_name_email' );
+          $aria_req = ( $req ? " aria-required='true'" : '' );
           
-          ?>
-    
-    </ol>
-    </div>
+          $consent = empty( $commenter['comment_author_email'] ) ? '' : ' checked="checked"';
+        $fields =  array(
+          'author' =>
+            '<input placeholder="Your name please"id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) .
+            '" size="30"' . $aria_req . ' />',
+          'email' =>
+            '<input  placeholder="your email" id="email" name="email" type="text" value="' . esc_attr(  $commenter['comment_author_email'] ) .
+            '" size="30"' . $aria_req . ' />',
+        );
 
-    </div>
-   <?php
- } ?>
+        $args = array(
+          'title_reply'       => 'Share Your Thoughts',
+          'fields'            => $fields,
+          'comment_field' =>  '<textarea id="comment" name="comment" cols="45" rows="2" aria-required="true">' .
+            '</textarea>',
+          'comment_notes_before' => '<p class="comment-notes">Your email address will not be published </p>'
+
+        );
+
+      comment_form( $args);
+      $comment_number=get_comments_number();
+      if($comment_number !=0)
+      {
+        ?>
+                <div class="comments">
+                <h3> What Others say</h3>
+                <ol class="all-comments">
+                <?php
+                $comments=get_comments( 
+                  array(
+                    'post_id'=> $post->ID,
+                    'status'=> 'approve'
+                  ));
+                  wp_list_comments( 
+                    array(
+                      'per_page'=>5,  
+                    ),$comments) ;
+                
+                ?>
+          
+          </ol>
+          </div>
+
+          </div>
+        <?php
+      } ?>
+        </div>
 <?php
 }
   endwhile;

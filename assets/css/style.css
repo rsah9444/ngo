@@ -166,7 +166,7 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   text-decoration: none;
 }
 
-.nav-menu .drop-down ul {
+.nav-menu li.has-sub ul {
   display: block;
   position: absolute;
   left: 0;
@@ -180,18 +180,18 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   transition: ease all 0.3s;
 }
 
-.nav-menu .drop-down:hover > ul {
+.nav-menu li.has-sub:hover > ul {
   opacity: 1;
   top: 100%;
   visibility: visible;
 }
 
-.nav-menu .drop-down li {
+.nav-menu li.has-sub li {
   min-width: 180px;
   position: relative;
 }
 
-.nav-menu .drop-down ul a {
+.nav-menu li.has-sub ul a {
   padding: 10px 20px;
   font-size: 14px;
   font-weight: 500;
@@ -199,31 +199,31 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   color: #103453;
 }
 
-.nav-menu .drop-down ul a:hover, .nav-menu .drop-down ul .active > a, .nav-menu .drop-down ul li:hover > a {
+.nav-menu li.has-sub ul a:hover, .nav-menu li.has-sub ul .active > a, .nav-menu li.has-sub ul li:hover > a {
   color: #428bca;
 }
 
-.nav-menu .drop-down > a:after {
+.nav-menu li.has-sub > a:after {
   content: "\ea99";
   font-family: IcoFont;
   padding-left: 5px;
 }
 
-.nav-menu .drop-down .drop-down ul {
+.nav-menu li.has-sub li.has-sub ul {
   top: 0;
   left: 100%;
 }
 
-.nav-menu .drop-down .drop-down:hover > ul {
+.nav-menu li.has-sub li.has-sub:hover > ul {
   opacity: 1;
   top: 0;
 }
 
-.nav-menu .drop-down .drop-down > a {
+.nav-menu li.has-sub li.has-sub > a {
   padding-right: 35px;
 }
 
-.nav-menu .drop-down .drop-down > a:after {
+.nav-menu li.has-sub li.has-sub > a:after {
   content: "\eaa0";
   font-family: IcoFont;
   position: absolute;
@@ -231,13 +231,13 @@ h1, h2, h3, h4, h5, h6, .font-primary {
 }
 
 @media (max-width: 1366px) {
-  .nav-menu .drop-down .drop-down ul {
+  .nav-menu li.has-sub li.has-sub ul {
     left: -90%;
   }
-  .nav-menu .drop-down .drop-down:hover > ul {
+  .nav-menu li.has-sub li.has-sub:hover > ul {
     left: -100%;
   }
-  .nav-menu .drop-down .drop-down > a:after {
+  .nav-menu li.has-sub li.has-sub > a:after {
     content: "\ea9d";
   }
 }
@@ -275,7 +275,7 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   text-decoration: none;
 }
 
-.mobile-nav .drop-down > a:after {
+.mobile-nav li.has-sub > a:after {
   content: "\ea99";
   font-family: IcoFont;
   padding-left: 10px;
@@ -283,20 +283,20 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   right: 15px;
 }
 
-.mobile-nav .active.drop-down > a:after {
+.mobile-nav .activeli.has-sub > a:after {
   content: "\eaa0";
 }
 
-.mobile-nav .drop-down > a {
+.mobile-nav li.has-sub > a {
   padding-right: 35px;
 }
 
-.mobile-nav .drop-down ul {
+.mobile-nav li.has-sub ul {
   display: none;
   overflow: hidden;
 }
 
-.mobile-nav .drop-down li {
+.mobile-nav li.has-sub li {
   padding-left: 20px;
 }
 

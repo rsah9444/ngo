@@ -91,7 +91,8 @@
        <?php wp_nav_menu( array( 
            'theme_location' => 'header-menu',
            'container' =>'',
-           'main-class'=>'nav-menu float-right d-none d-lg-block dropdown' 
+           
+           'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>'
        
        
        ) );?>
@@ -117,17 +118,16 @@
                      'posts_per_page' => 5
                      );
                 $loop = new WP_Query( $args );
-                while ( $loop->have_posts() ) : $loop->the_post();
+                $count=1;
+                while ( $loop->have_posts() ) {
+                $loop->the_post();
                 $image_title=get_field('slider-title');
                 $image_description=get_field('slider-description');
-                $image=get_field('slider-image');
-                
-                ?>
-                
-            
-                
-          <!-- Slide 1 -->
-          <div class="carousel-item active" style="background-image: url('<?php echo ($image['url']) ?>');">
+                $image=get_field('slider-image');  
+                     
+                ?>      
+          <!-- Slide <?php echo $count ?> -->
+          <div class="carousel-item <?php if ($count==1) echo 'active' ?>" style="background-image: url('<?php echo ($image['url']) ?>');">
             <div class="carousel-container">
               <div class="carousel-content container">
                 <h2 class="animated fadeInDown"><?php echo esc_html($image_title) ?></h2>
@@ -139,7 +139,9 @@
 
 
           <?php
-                endwhile;
+            $count++;
+                }
+               
                 wp_reset_query();
          ?>
 

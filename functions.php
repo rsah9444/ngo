@@ -28,6 +28,7 @@ function ngo_main_function(){
     wp_enqueue_script( 'counter',get_template_directory_uri().'./assets/vendor/counterup/counterup.min.js', array('jquery'), microtime(),true );
     wp_enqueue_script( 'isotope',get_template_directory_uri().'./assets/vendor/isotope-layout/isotope.pkgd.min.js', array('jquery'), microtime(),true );
     wp_enqueue_script( 'aosjs',get_template_directory_uri().'./assets/vendor/aos/aos.js', array(),microtime(),true );
+    wp_enqueue_script( 'slick', 'http://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js',array(),microtime(),true);
     wp_enqueue_script( 'mainjs',get_template_directory_uri().'./assets/js/main.js', array('jquery'),microtime(), true );
    
    
@@ -39,9 +40,10 @@ function register_ngo_menus() {
     register_nav_menus(
       array(
         'header-menu' => __( 'Header Menu' ),
-        'extra-menu' => __( 'Extra Menu' )
+        'extra-menu' => __( 'Extra Menu' ),
+        'footer-menu'=>__('Footer Menu'),
        )
-     );
+      );
    }
    add_action( 'init', 'register_ngo_menus' );
 
